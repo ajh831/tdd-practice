@@ -60,6 +60,7 @@ class CalculationRequestTest {
         });
     }
 
+
     @Test
     public void 유효하지_않은_길이의_연산자가_들어오면_에러를_던진다() throws Exception {
         // given
