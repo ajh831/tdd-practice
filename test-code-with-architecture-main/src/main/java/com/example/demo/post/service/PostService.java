@@ -1,12 +1,13 @@
-package com.example.demo.service;
+package com.example.demo.user.service;
 
-import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.dto.PostCreateDto;
-import com.example.demo.model.dto.PostUpdateDto;
-import com.example.demo.repository.PostEntity;
-import com.example.demo.repository.PostRepository;
-import com.example.demo.repository.UserEntity;
+import com.example.demo.common.domain.exception.ResourceNotFoundException;
+import com.example.demo.user.domain.dto.PostCreateDto;
+import com.example.demo.user.domain.dto.PostUpdateDto;
+import com.example.demo.user.repository.PostEntity;
+import com.example.demo.user.repository.PostRepository;
+import com.example.demo.user.repository.UserEntity;
 import java.time.Clock;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
