@@ -2,7 +2,7 @@ package com.example.demo.post.service;
 
 import com.example.demo.post.domain.PostCreate;
 import com.example.demo.post.domain.PostUpdate;
-import com.example.demo.post.repository.PostEntity;
+import com.example.demo.post.infrastructure.PostEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
