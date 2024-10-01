@@ -1,4 +1,4 @@
-package com.example.demo.post.controller.dto;
+package com.example.demo.post.controller.response;
 
 import com.example.demo.user.controller.response.UserResponse;
 import lombok.Getter;

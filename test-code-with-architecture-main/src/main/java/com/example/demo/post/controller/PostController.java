@@ -1,9 +1,10 @@
-package com.example.demo.user.controller;
+package com.example.demo.post.controller;
 
-import com.example.demo.user.domain.dto.PostResponse;
-import com.example.demo.user.domain.dto.PostUpdateDto;
-import com.example.demo.user.repository.PostEntity;
-import com.example.demo.user.service.PostService;
+import com.example.demo.user.controller.UserController;
+import com.example.demo.post.controller.response.PostResponse;
+import com.example.demo.post.domain.PostUpdate;
+import com.example.demo.post.repository.PostEntity;
+import com.example.demo.post.service.PostService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -31,10 +32,10 @@ public class PostController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PostResponse> updatePost(@PathVariable long id, @RequestBody PostUpdateDto postUpdateDto) {
+    public ResponseEntity<PostResponse> updatePost(@PathVariable long id, @RequestBody PostUpdate postUpdate) {
         return ResponseEntity
             .ok()
-            .body(toResponse(postService.update(id, postUpdateDto)));
+            .body(toResponse(postService.update(id, postUpdate)));
     }
 
     public PostResponse toResponse(PostEntity postEntity) {

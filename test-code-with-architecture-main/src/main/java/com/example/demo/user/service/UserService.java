@@ -1,15 +1,15 @@
-package com.example.demo.service;
+package com.example.demo.user.service;
 
-import com.example.demo.exception.CertificationCodeNotMatchedException;
-import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.UserStatus;
-import com.example.demo.model.dto.UserCreateDto;
-import com.example.demo.model.dto.UserUpdateDto;
-import com.example.demo.repository.UserEntity;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.common.domain.exception.CertificationCodeNotMatchedException;
+import com.example.demo.common.domain.exception.ResourceNotFoundException;
+import com.example.demo.user.domain.UserStatus;
+import com.example.demo.user.domain.UserCreate;
+import com.example.demo.user.domain.UserUpdate;
+import com.example.demo.user.infrastructure.UserEntity;
+import com.example.demo.user.infrastructure.UserRepository;
 import java.time.Clock;
-import java.util.Optional;
 import java.util.UUID;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -34,24 +34,24 @@ public class UserService {
     }
 
     @Transactional
-    public UserEntity create(UserCreateDto userCreateDto) {
+    public UserEntity create(UserCreate userCreate) {
         UserEntity userEntity = new UserEntity();
-        userEntity.setEmail(userCreateDto.getEmail());
-        userEntity.setNickname(userCreateDto.getNickname());
-        userEntity.setAddress(userCreateDto.getAddress());
+        userEntity.setEmail(userCreate.getEmail());
+        userEntity.setNickname(userCreate.getNickname());
+        userEntity.setAddress(userCreate.getAddress());
         userEntity.setStatus(UserStatus.PENDING);
         userEntity.setCertificationCode(UUID.randomUUID().toString());
         userEntity = userRepository.save(userEntity);
         String certificationUrl = generateCertificationUrl(userEntity);
-        sendCertificationEmail(userCreateDto.getEmail(), certificationUrl);
+        sendCertificationEmail(userCreate.getEmail(), certificationUrl);
         return userEntity;
     }
 
     @Transactional
-    public UserEntity update(long id, UserUpdateDto userUpdateDto) {
+    public UserEntity update(long id, UserUpdate userUpdate) {
         UserEntity userEntity = getById(id);
-        userEntity.setNickname(userUpdateDto.getNickname());
-        userEntity.setAddress(userUpdateDto.getAddress());
+        userEntity.setNickname(userUpdate.getNickname());
+        userEntity.setAddress(userUpdate.getAddress());
         userEntity = userRepository.save(userEntity);
         return userEntity;
     }

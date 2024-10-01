@@ -1,6 +1,5 @@
-package com.example.demo.user.domain.dto;
+package com.example.demo.user.domain;
 
-import com.example.demo.user.domain.UserStatus;
 import lombok.Getter;
 import lombok.Setter;
 
