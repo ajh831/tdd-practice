@@ -2,6 +2,8 @@ package com.example.demo.user.service;
 
 import com.example.demo.common.domain.exception.CertificationCodeNotMatchedException;
 import com.example.demo.common.domain.exception.ResourceNotFoundException;
+import com.example.demo.common.service.port.ClockHolder;
+import com.example.demo.common.service.port.UuidHolder;
 import com.example.demo.user.domain.User;
 import com.example.demo.user.domain.UserStatus;
 import com.example.demo.user.domain.UserCreate;
@@ -12,12 +14,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Clock;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
     private final CertificationService certificationService;
+    private final UuidHolder uuidHolder;
+    private final ClockHolder clockHolder;
 
     public User getByEmail(String email) {
         return userRepository.findByEmailAndStatus(email, UserStatus.ACTIVE)
@@ -31,7 +37,7 @@ public class UserService {
 
     @Transactional
     public User create(UserCreate userCreate) {
-        User user = User.from(userCreate);
+        User user = User.from(userCreate, uuidHolder);
         user = userRepository.save(user);
         certificationService.send(userCreate.getEmail(), user.getId(), user.getCertificationCode());
         return user;
@@ -48,7 +54,7 @@ public class UserService {
     @Transactional
     public void login(long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Users", id));
-        user = user.login();
+        user = user.login(clockHolder);
         userRepository.save(user); // user.login()에서 새로운 객체를 만들어서 반환했기 때문에 JPA와 영속성이 끊어져 저장을 따로 해줘야 됨
     }
 

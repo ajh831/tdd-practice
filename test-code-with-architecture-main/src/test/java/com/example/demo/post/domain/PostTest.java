@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PostTest {
     
     @Test
-    public void PostCreate로_게시물을_만들_수_있다() throws Exception {
+    public void PostCreate로_게시물을_만들_수_있다() {
         // given
         PostCreate postCreate = PostCreate.builder()
                 .writerId(1)
