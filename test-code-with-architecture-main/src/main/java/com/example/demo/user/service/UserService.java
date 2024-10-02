@@ -21,12 +21,12 @@ public class UserService {
 
     public User getByEmail(String email) {
         return userRepository.findByEmailAndStatus(email, UserStatus.ACTIVE)
-            .orElseThrow(() -> new ResourceNotFoundException("Users", email));
+                .orElseThrow(() -> new ResourceNotFoundException("Users", email));
     }
 
     public User getById(long id) {
         return userRepository.findByIdAndStatus(id, UserStatus.ACTIVE)
-            .orElseThrow(() -> new ResourceNotFoundException("Users", id));
+                .orElseThrow(() -> new ResourceNotFoundException("Users", id));
     }
 
     @Transactional
