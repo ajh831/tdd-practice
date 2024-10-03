@@ -128,7 +128,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void use를_로그인_시키면_마지막_로그인_시간이_변경된다() {
+    public void user를_로그인_시키면_마지막_로그인_시간이_변경된다() {
         // given
         // when
         userService.login(1);

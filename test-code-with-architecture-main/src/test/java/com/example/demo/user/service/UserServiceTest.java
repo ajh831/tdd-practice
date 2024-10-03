@@ -26,8 +26,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 
+/*
+    소형 테스트
+*/
 public class UserServiceTest {
-
 
     private UserService userService;
 
