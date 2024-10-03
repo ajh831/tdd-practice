@@ -2,7 +2,6 @@ package com.example.demo.post.infrastructure;
 
 import com.example.demo.post.domain.Post;
 import com.example.demo.post.service.port.PostRepository;
-import com.example.demo.user.infrastructure.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -21,6 +20,6 @@ public class PostRepositoryImpl implements PostRepository {
 
     @Override
     public Post save(Post post) {
-        return postJpaRepository.save(PostEntity.fromModel(post)).toModel();
+        return postJpaRepository.save(PostEntity.from(post)).toModel();
     }
 }

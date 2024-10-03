@@ -41,6 +41,6 @@ public class UserRepositoryImpl implements UserRepository {
          domain은 infrastructure 레이어의 정보를 모르는 것이 좋으므로
          userJpaRepository.save(user.toEntity()); 이렇게 작성하지 않음
 */
-        return userJpaRepository.save(UserEntity.fromModel(user)).toModel(); // domain 객체를 영속성 객체로 변환
+        return userJpaRepository.save(UserEntity.from(user)).toModel(); // domain 객체를 영속성 객체로 변환
     }
 }
