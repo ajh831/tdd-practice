@@ -10,6 +10,7 @@ import com.example.demo.user.domain.UserCreate;
 import com.example.demo.user.domain.UserUpdate;
 
 import com.example.demo.user.service.port.UserRepository;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.Clock;
 
 @Service
+@Builder
 @RequiredArgsConstructor
 public class UserService {
 
